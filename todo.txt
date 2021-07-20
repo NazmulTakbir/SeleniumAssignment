@@ -1,0 +1,13 @@
+correct registration
+email already exists
+age not in range
+phone number exists
+passwords do not match
+not email
+no email
+no name
+no age
+no phone number
+phone number not in range
+no password
+no confirm password
