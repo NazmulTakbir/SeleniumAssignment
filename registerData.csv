@@ -1,0 +1,15 @@
+unique_email@gmail.com,Nazmul,23,8801710000000,1234,1234,Registration Successful! Please Login
+unique_email@gmail.com,Saif,23,8801710000000,1234,1234,Email Already Exists
+nazmultakbir98@gmail.com,Takbir,2,8801710000000,1234,1234,Value must be greater than or equal to 5
+nazmultakbir98@gmail.com,Saif,200,8801710000000,1234,1234,Value must be less than or equal to 100
+unique_email2@gmail.com,Ahmed,23,8801710000000,1234,1234,Phone number already exists
+unique_email@gmail.com,Khan,23,8801350000000,1234,9989,Passwords do not match
+unique_email,Khan,23,8801350000000,1234,9989,please include an '@' in the email address
+,Khan,23,8801350000000,1234,9989,Please fill out this field
+unique_email@gmail.com,,23,8801350000000,1234,9989,Please fill out this field
+unique_email@gmail.com,Khan,,8801350000000,1234,9989,Please fill out this field
+unique_email@gmail.com,Khan,23,,1234,9989,Please fill out this field
+unique_email@gmail.com,Khan,23,8801350000000,,9989,Please fill out this field
+unique_email@gmail.com,Khan,23,8801350000000,1234,,Please fill out this field
+unique_email@gmail.com,Khan,23,101,1234,9989,Value must be greater than or equal to 8801100000000
+unique_email@gmail.com,Khan,23,88021300000000000,1234,9989,Value must be less than or equal to 8801999999999
