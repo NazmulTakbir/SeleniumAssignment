@@ -1,15 +1,32 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Main {
     private static WebDriver driver;
+    private static String chromeDriver = "E:\\Main\\Semesters\\3_1\\CSE 307 - Software Engineering\\Assignment\\SeleniumProject\\chromedriver.exe";
+    private static String edgeDriver = "E:\\Main\\Semesters\\3_1\\CSE 307 - Software Engineering\\Assignment\\SeleniumProject\\msedgedriver.exe";
+    private static String firefoxDriver = "E:\\Main\\Semesters\\3_1\\CSE 307 - Software Engineering\\Assignment\\SeleniumProject\\geckodriver.exe";
 
     public static void main(String[] args) {
         try {
-            String chromeDriver = "E:\\Main\\Semesters\\3_1\\CSE 307 - Software Engineering\\Assignment\\SeleniumProject\\chromedriver.exe";
-            System.setProperty("webdriver.chrome.driver", chromeDriver);
-            driver = new ChromeDriver();
+            String webBrowser = "firefox";
+
+            if( webBrowser.equalsIgnoreCase("edge") ) {
+                System.setProperty("webdriver.edge.driver", edgeDriver);
+                driver = new EdgeDriver();
+            }
+            else if( webBrowser.equalsIgnoreCase("chrome") ) {
+                System.setProperty("webdriver.chrome.driver", chromeDriver);
+                driver = new ChromeDriver();
+            }
+            else if( webBrowser.equalsIgnoreCase("firefox") ) {
+                System.setProperty("webdriver.firefox.driver", firefoxDriver);
+                driver = new FirefoxDriver();
+            }
+
             register("1705103@ugrad.cse.buet.ac.bd", "Nazmul Takbir", "22", "8801727498589", "1234", "1234");
             login("1705103@ugrad.cse.buet.ac.bd", "1234");
         } catch (Exception e) {
