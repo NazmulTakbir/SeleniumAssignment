@@ -18,16 +18,47 @@ class NavigatorTest {
 
     @BeforeAll
     private static void setUp() {
-        navigator = new Navigator("chrome",false);
+        navigator = new Navigator("chrome",true);
         baseDirectory = Paths.get(System.getProperty("user.dir")).toString();
     }
 
-//    @ParameterizedTest
-//    @MethodSource("loginTestCases")
-//    void loginTest(String[] loginData) {
-//        boolean testResult = navigator.login(loginData[0], loginData[1], loginData[2]);
-//        assertTrue(testResult);
-//    }
+    @ParameterizedTest
+    @MethodSource("registerTestCases")
+    void registerTest(String[] registerData) {
+        boolean testResult = navigator.register(registerData[0], registerData[1], registerData[2], registerData[3],
+                registerData[4], registerData[5], registerData[6]);
+        assertTrue(testResult);
+    }
+
+    private static Stream<Arguments> registerTestCases() throws Exception {
+        String registerDataFile = Paths.get(baseDirectory, "registerData.csv").toString();
+        File inputFile = new File(registerDataFile);
+
+        ArrayList<String[]> registerData = new ArrayList();
+        try {
+            Scanner scanner = new Scanner(inputFile);
+            while( scanner.hasNextLine() ) {
+                registerData.add(scanner.nextLine().split(","));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        if( registerData.size()<=0 ) throw new Exception("No Register Data");
+
+        Stream dataStream = Stream.of(Arguments.of((Object) registerData.get(0)));
+        for( int i=1; i<=registerData.size()-1; i++) {
+            dataStream = Stream.concat(dataStream, Stream.of(Arguments.of((Object) registerData.get(i))));
+        }
+        return dataStream;
+    }
+
+    @ParameterizedTest
+    @MethodSource("loginTestCases")
+    void loginTest(String[] loginData) {
+        boolean testResult = navigator.login(loginData[0], loginData[1], loginData[2]);
+        assertTrue(testResult);
+    }
 
     private static Stream<Arguments> loginTestCases() throws Exception {
         String loginDataFile = Paths.get(baseDirectory, "loginData.csv").toString();
@@ -53,33 +84,32 @@ class NavigatorTest {
     }
 
     @ParameterizedTest
-    @MethodSource("registerTestCases")
-    void registerTest(String[] registerData) {
-        boolean testResult = navigator.register(registerData[0], registerData[1], registerData[2], registerData[3],
-                                                registerData[4], registerData[5], registerData[6]);
+    @MethodSource("productAddTestCases")
+    void productAddTest(String[] loginData) {
+        boolean testResult = navigator.addProduct(loginData[0], loginData[1], loginData[2], loginData[3],
+                                                  loginData[4], loginData[5], loginData[6], loginData[7]);
         assertTrue(testResult);
     }
 
-    private static Stream<Arguments> registerTestCases() throws Exception {
-//        String registerDataFile = Paths.get(baseDirectory, "registerData.csv").toString();
-        String registerDataFile = Paths.get(baseDirectory, "temp.csv").toString();
-        File inputFile = new File(registerDataFile);
+    private static Stream<Arguments> productAddTestCases() throws Exception {
+        String productDataFile = Paths.get(baseDirectory, "productData.csv").toString();
+        File inputFile = new File(productDataFile);
 
-        ArrayList<String[]> registerData = new ArrayList();
+        ArrayList<String[]> loginData = new ArrayList();
         try {
             Scanner scanner = new Scanner(inputFile);
             while( scanner.hasNextLine() ) {
-                registerData.add(scanner.nextLine().split(","));
+                loginData.add(scanner.nextLine().split(","));
             }
         } catch (Exception e) {
             System.out.println(e);
         }
 
-        if( registerData.size()<=0 ) throw new Exception("No Register Data");
+        if( loginData.size()<=0 ) throw new Exception("No Product Data");
 
-        Stream dataStream = Stream.of(Arguments.of((Object) registerData.get(0)));
-        for( int i=1; i<=registerData.size()-1; i++) {
-            dataStream = Stream.concat(dataStream, Stream.of(Arguments.of((Object) registerData.get(i))));
+        Stream dataStream = Stream.of(Arguments.of((Object) loginData.get(0)));
+        for( int i=1; i<=loginData.size()-1; i++) {
+            dataStream = Stream.concat(dataStream, Stream.of(Arguments.of((Object) loginData.get(i))));
         }
         return dataStream;
     }
