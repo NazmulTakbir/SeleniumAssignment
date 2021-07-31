@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 
 public class Navigator {
     private WebDriver driver;
-    private int time = 300;
+    private int time = 100;
     private boolean pause;
     private String webBrowser;
     private JavascriptExecutor javascriptExecutor;

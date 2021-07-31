@@ -22,66 +22,66 @@ class NavigatorTest {
         baseDirectory = Paths.get(System.getProperty("user.dir")).toString();
     }
 
-    @ParameterizedTest
-    @MethodSource("registerTestCases")
-    void registerTest(String[] registerData) {
-        boolean testResult = navigator.register(registerData[0], registerData[1], registerData[2], registerData[3],
-                registerData[4], registerData[5], registerData[6]);
-        assertTrue(testResult);
-    }
-
-    private static Stream<Arguments> registerTestCases() throws Exception {
-        String registerDataFile = Paths.get(baseDirectory, "registerData.csv").toString();
-        File inputFile = new File(registerDataFile);
-
-        ArrayList<String[]> registerData = new ArrayList();
-        try {
-            Scanner scanner = new Scanner(inputFile);
-            while( scanner.hasNextLine() ) {
-                registerData.add(scanner.nextLine().split(","));
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
-        if( registerData.size()<=0 ) throw new Exception("No Register Data");
-
-        Stream dataStream = Stream.of(Arguments.of((Object) registerData.get(0)));
-        for( int i=1; i<=registerData.size()-1; i++) {
-            dataStream = Stream.concat(dataStream, Stream.of(Arguments.of((Object) registerData.get(i))));
-        }
-        return dataStream;
-    }
-
-    @ParameterizedTest
-    @MethodSource("loginTestCases")
-    void loginTest(String[] loginData) {
-        boolean testResult = navigator.login(loginData[0], loginData[1], loginData[2]);
-        assertTrue(testResult);
-    }
-
-    private static Stream<Arguments> loginTestCases() throws Exception {
-        String loginDataFile = Paths.get(baseDirectory, "loginData.csv").toString();
-        File inputFile = new File(loginDataFile);
-
-        ArrayList<String[]> loginData = new ArrayList();
-        try {
-            Scanner scanner = new Scanner(inputFile);
-            while( scanner.hasNextLine() ) {
-                loginData.add(scanner.nextLine().split(","));
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
-        if( loginData.size()<=0 ) throw new Exception("No Login Data");
-
-        Stream dataStream = Stream.of(Arguments.of((Object) loginData.get(0)));
-        for( int i=1; i<=loginData.size()-1; i++) {
-            dataStream = Stream.concat(dataStream, Stream.of(Arguments.of((Object) loginData.get(i))));
-        }
-        return dataStream;
-    }
+//    @ParameterizedTest
+//    @MethodSource("registerTestCases")
+//    void registerTest(String[] registerData) {
+//        boolean testResult = navigator.register(registerData[0], registerData[1], registerData[2], registerData[3],
+//                registerData[4], registerData[5], registerData[6]);
+//        assertTrue(testResult);
+//    }
+//
+//    private static Stream<Arguments> registerTestCases() throws Exception {
+//        String registerDataFile = Paths.get(baseDirectory, "registerData.csv").toString();
+//        File inputFile = new File(registerDataFile);
+//
+//        ArrayList<String[]> registerData = new ArrayList();
+//        try {
+//            Scanner scanner = new Scanner(inputFile);
+//            while( scanner.hasNextLine() ) {
+//                registerData.add(scanner.nextLine().split(","));
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//
+//        if( registerData.size()<=0 ) throw new Exception("No Register Data");
+//
+//        Stream dataStream = Stream.of(Arguments.of((Object) registerData.get(0)));
+//        for( int i=1; i<=registerData.size()-1; i++) {
+//            dataStream = Stream.concat(dataStream, Stream.of(Arguments.of((Object) registerData.get(i))));
+//        }
+//        return dataStream;
+//    }
+//
+//    @ParameterizedTest
+//    @MethodSource("loginTestCases")
+//    void loginTest(String[] loginData) {
+//        boolean testResult = navigator.login(loginData[0], loginData[1], loginData[2]);
+//        assertTrue(testResult);
+//    }
+//
+//    private static Stream<Arguments> loginTestCases() throws Exception {
+//        String loginDataFile = Paths.get(baseDirectory, "loginData.csv").toString();
+//        File inputFile = new File(loginDataFile);
+//
+//        ArrayList<String[]> loginData = new ArrayList();
+//        try {
+//            Scanner scanner = new Scanner(inputFile);
+//            while( scanner.hasNextLine() ) {
+//                loginData.add(scanner.nextLine().split(","));
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//
+//        if( loginData.size()<=0 ) throw new Exception("No Login Data");
+//
+//        Stream dataStream = Stream.of(Arguments.of((Object) loginData.get(0)));
+//        for( int i=1; i<=loginData.size()-1; i++) {
+//            dataStream = Stream.concat(dataStream, Stream.of(Arguments.of((Object) loginData.get(i))));
+//        }
+//        return dataStream;
+//    }
 
     @ParameterizedTest
     @MethodSource("productAddTestCases")
